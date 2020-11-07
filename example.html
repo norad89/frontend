@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Hello World</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+
+    <!-- Don't use this in production: -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+
+        class Counter extends React.Component {
+            render () {
+            return (<p style = {{fontSize: '36px', color: "yellowgreen"}}>{this.props.counter}</p>
+            );}}
+
+        class Content extends React.Component {
+
+            constructor(props) {
+                super(props);
+                
+                this.state = {
+                    text: 'Sono una stringa',
+                    counter: 0,
+                };
+            }
+
+            render() {
+                return <div>
+                    <p>{this.props.text}</p>
+                    <p>{this.state.text}</p>
+                    <p>{this.state.counter}</p>
+                    <Counter counter={this.state.counter}/>
+                    <button onClick={() => {
+                        this.setState({counter: this.state.counter +1})
+                        this.setState({text: "Mi chiamo Gianpaolo"})
+                    }}>Click me </button>
+                    </div>;
+            }
+        }
+
+        class Title extends React.Component {
+            render() {
+                return <h1>{this.props.text}</h1>;
+            }
+        }
+
+        class Boris extends React.Component {
+            render() {
+                return <p>"Chi ha ucciso il conte?" "E' stato {this.props.name}"</p>
+            }
+        }
+
+        class App extends React.Component {
+            render() {
+                return (
+                    <div>
+                        <Title text={this.props.title} />
+                        <Content text="Metti mi piace" />
+                        <Boris name={this.props.name} />
+
+                    </div>
+                )
+            }
+        }
+
+        ReactDOM.render(
+            <App title="Il mio blog post" name="!"/>,
+            document.getElementById('root')
+        );
+
+
+        class Conte extends React.Component {
+            constructor(props) {
+
+            }
+
+            render() {
+                return <button />
+            }
+        }
+
+    </script>
+    <!--
+      Note: this page is a great way to try React but it's not suitable for production.
+      It slowly compiles JSX with Babel in the browser and uses a large development build of React.
+
+      Read this section for a production-ready setup with JSX:
+      https://reactjs.org/docs/add-react-to-a-website.html#add-jsx-to-a-project
+
+      In a larger project, you can use an integrated toolchain that includes JSX instead:
+      https://reactjs.org/docs/create-a-new-react-app.html
+
+      You can also use React without JSX, in which case you can remove Babel:
+      https://reactjs.org/docs/react-without-jsx.html
+    -->
+</body>
+
+</html>
